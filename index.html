@@ -129,7 +129,8 @@
   <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
 
-    if(!Detector.webgl){
+    function drawData(url){
+        if(!Detector.webgl){
       Detector.addGetWebGLMessage();
     } else {
 
@@ -165,14 +166,27 @@
       
       
       xhr = new XMLHttpRequest();
-      xhr.open('GET', 'population909500.json', true);
+        //http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2016-05-15&endtime=2016-05-17&minmagnitude=5
+      xhr.open('GET', url, true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
-            window.data = data;
-            for (i=0;i<data.length;i++) {
-              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+            var earthData=[];  
+            //window.data = data;
+              
+                  
+            for(j=0;j<data.features.length;j++){
+                data.features[0].properties.mag
+                data.features[0].geometry.coordinates
+                earthData.push(data.features[j].geometry.coordinates[1],data.features[j].geometry.coordinates[0],(data.features[j].properties.mag/10))
+            }
+            
+             var myData = [ 
+                 ['seriesA', earthData]
+                 ];
+            for (i=0;i<myData.length;i++) {
+              globe.addData(myData[i][1], {format: 'magnitude', name: myData[i][0], animated: true});
             }
             globe.createPoints();
             settime(globe,0)();
@@ -182,6 +196,7 @@
         }
       };
       xhr.send(null);
+    }
     }
 
   </script>
