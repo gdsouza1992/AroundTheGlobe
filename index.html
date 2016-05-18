@@ -110,8 +110,15 @@
   </div>
 
   <div id="title">
-    Eartquakes by G
+    Earthquake data
   </div>
+      <div class="filter-data">
+          <input id=start-date type="date"/>
+          <input id=end-date type="date"/>
+          <input id=magnitude-number type="number"/>
+          <input id="search" type="button" onClick="onSubmit()" value="Search"/>
+      </div>
+      
 
   <a id="ce" href="http://www.chromeexperiments.com/globe">
     <span>This is a Chrome Experiment</span>
@@ -122,6 +129,16 @@
   <script type="text/javascript" src="third-party/Tween.js"></script>
   <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
+    var GLOBE;  
+    function onSubmit(){
+        
+        var start = document.getElementById("start-date").value;
+        var end = document.getElementById("end-date").value;
+        var mag = document.getElementById("magnitude-number").value;
+        var makeURL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime="+start+"&endtime="+end+"&minmagnitude="+mag;
+        drawData(makeURL)
+          
+    }
 
     function drawData(url){
         if(!Detector.webgl){
@@ -145,7 +162,7 @@
       
       
       xhr = new XMLHttpRequest();
-        //http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2016-05-15&endtime=2016-05-17&minmagnitude=5
+       
       xhr.open('GET', url, true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
@@ -171,12 +188,15 @@
             settime(globe,0)();
             globe.animate();
             document.body.style.backgroundImage = 'none'; // remove loading
+            GLOBE = globe;  
           }
         }
       };
       xhr.send(null);
     }
     }
+      
+      
 
   </script>
 
