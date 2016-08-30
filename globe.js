@@ -18,7 +18,21 @@ DAT.Globe = function(container, opts) {
   
   var colorFn = opts.colorFn || function(x) {
     var c = new THREE.Color();
-    c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
+    console.log(x);
+    colorH = 0;
+    if(x>0.1)
+        colorH = ( 0.8 - ( x * 0.5 ))
+    if(x>0.2)
+        colorH = ( 0.6 - ( x * 0.5 ))
+    if(x>0.3)
+        colorH = ( 0.5 - ( x * 0.5 ))
+    if(x>0.4)
+        colorH = ( 0.4 - ( x * 0.5 ))
+    if(x>0.6)
+        colorH = ( 0.2 - ( x * 0.5 ))      
+//    c.setHSL( ( 0.2 - ( x * 0.5 ) ), 1.0, 0.5 );
+    c.setHSL(colorH, 1.0, 0.5 );
+      
     return c;
   };
   var imgDir = opts.imgDir || '/globe/';
