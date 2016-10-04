@@ -141,22 +141,11 @@
   <div id="info">
     <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;</span> Data acquired from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>
   </div>
-<<<<<<< HEAD
       <div class="filter-data">
           <h3>Search earthquake data</h3>
           Start Date<input id=start-date type="date"/>
           End Date<input id=end-date type="date"/>
           Magnitude(1-8)<input id=magnitude-number type="number"/>
-=======
-
-  <div id="title">
-    Earthquake data
-  </div>
-      <div class="filter-data">
-          <input id=start-date type="date"/>
-          <input id=end-date type="date"/>
-          <input id=magnitude-number type="number"/>
->>>>>>> 0f0a89386ed3b844de5ec56f3f5f951c598495ed
           <input id="search" type="button" onClick="onSubmit()" value="Search"/>
       </div>
       
@@ -173,10 +162,7 @@
     var GLOBE;  
     function onSubmit(){
         
-<<<<<<< HEAD
         document.getElementById("loading-sign").className="show";
-=======
->>>>>>> 0f0a89386ed3b844de5ec56f3f5f951c598495ed
         var start = document.getElementById("start-date").value;
         var end = document.getElementById("end-date").value;
         var mag = document.getElementById("magnitude-number").value;
@@ -234,10 +220,7 @@
             globe.animate();
             document.body.style.backgroundImage = 'none'; // remove loading
             GLOBE = globe;  
-<<<<<<< HEAD
             document.getElementById("loading-sign").className="hidden";
-=======
->>>>>>> 0f0a89386ed3b844de5ec56f3f5f951c598495ed
           }
         }
       };
